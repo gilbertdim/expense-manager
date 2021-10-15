@@ -1,3 +1,17 @@
+## About Laravel
+
+### Installation
+- Clone the repository
+- Run `composer install` to install all dependencies.
+- Run `npm install` to install css and js packages
+- Configure the `.env` file and add database credentials and email credentials
+- Run `php artisan migrate` to initialize the database
+- [Optional] Run `npm run dev / prod / watch` to compile assets
+
+### Default credential
+Username: admin@expense-manager.com<br>
+Password: admin
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
