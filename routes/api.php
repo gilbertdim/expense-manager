@@ -19,8 +19,10 @@ use App\Http\Controllers\UserRoleController;
 */
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/user/role', function (Request $request) {
+    Route::get('/user', function (Request $request) {
         return response()->json([
+            'name' => $request->user()->name,
+            'role_name' => $request->user()->role_name,
             'role' => $request->user()->role_id
         ]);
     });

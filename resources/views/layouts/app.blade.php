@@ -35,25 +35,25 @@
                     <ul class="relative min-h-screen">
                         <li class="flex mt-8">
                             <a class="mx-auto" href="{{ route('profile') }}">
-                                <img class="h-20 rounded-full" src="https://randomuser.me/api/portraits/men/77.jpg" alt="">
+                                <img class="h-20 rounded-full" src="https://www.clipartmax.com/png/middle/171-1717870_stockvader-predicted-cron-for-may-user-profile-icon-png.png" alt="">
                             </a>
                         </li>
                         <li class="text-center h-12">
                             <label class="">
-                                <a href="{{ route('profile') }}">Gilbert Dimaano (Admin)</a>
+                                <a href="{{ route('profile') }}">${ profile.name } (${ profile.role })</a>
                             </label>
                         </li>
                         <li class="block relative py-2">
-                            <a href="{{ route('dashboard') }}" :class="{'bg-gray-500': menuDashboard}" class="hover:bg-gray-300 hover:text-black px-2 block relative w-full h-full">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" :class="{'bg-gray-500': menuDashboard}" class="py-3 hover:bg-gray-300 hover:text-black px-2 block relative w-full h-full">Dashboard</a>
                         </li>
                         <li v-if="isAdmin" class="block relative py-2">
                             <a href="#" class="px-2 block relative w-full h-full">User Management</a>
                             <ul>
                                 <li class="block relative">
-                                    <a href="{{ route('user.roles') }}" :class="{'bg-gray-500': menuUserRole}" class="hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">Roles</a>
+                                    <a href="{{ route('user.roles') }}" :class="{'bg-gray-500': menuUserRole}" class="py-3 hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">Roles</a>
                                 </li>
                                 <li class="block relative">
-                                    <a href="{{ route('users') }}" :class="{'bg-gray-500': menuUsers}" class="hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">User</a>
+                                    <a href="{{ route('users') }}" :class="{'bg-gray-500': menuUsers}" class="py-3 hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">User</a>
                                 </li>
                             </ul>
                         </li>
@@ -61,10 +61,10 @@
                             <a href="#" class="px-2 block relative w-full h-full">Expense Management</a>
                             <ul class="">
                                 <li v-if="isAdmin" class="block relative">
-                                    <a href="{{ route('expenses.category') }}" :class="{'bg-gray-500': menuExpenseCategory}" class="hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">Expense Category</a>
+                                    <a href="{{ route('expenses.category') }}" :class="{'bg-gray-500': menuExpenseCategory}" class="py-3 hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">Expense Category</a>
                                 </li>
                                 <li class="block relative">
-                                    <a href="{{ route('expenses') }}" :class="{'bg-gray-500': menuExpenses}" class="hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">Expenses</a>
+                                    <a href="{{ route('expenses') }}" :class="{'bg-gray-500': menuExpenses}" class="py-3 hover:bg-gray-300 hover:text-black block" style="padding-left: 2rem">Expenses</a>
                             </li>
                             </ul>
                         </li>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <div class="w-full fixed mt-10 pt-5 pl-4 md:pl-64 lg:pl-64 pr-4">
-                    <div class="flex justify-between">
+                    <div class="block md:flex justify-between">
                         <h2 class="text-xl font-semibold">{{ $header }}</h2>
                         <h1 class="font-semibold">{{ $header_path }}</h1>
                     </div>
@@ -263,6 +263,31 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="showLoader" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex w-full my-5">
+                            <div class="flex mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    Processing Request
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

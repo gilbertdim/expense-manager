@@ -22,12 +22,17 @@ let app = Vue.createApp({
             isAdd: false,
             withDelete: false,
             showModal: false,
+            showLoader: false,
             isShowMenu: true,
             formRole: false,
             formCategory: false,
             formUser: false,
             formExpense: false,
             maxExpenseEntryDate: dateFormat(new Date, 'yyyy-mm-dd'),
+            profile:{
+              name:'',
+              role:''
+            },
             data: {
               userRoles: [],
               expenseCategories: [],
@@ -67,11 +72,6 @@ let app = Vue.createApp({
         }
     },
     methods: {
-        showMenu(){
-          console.log('clicked');
-          // this.isShowMenu = !this.isShowMenu;
-          // return this.isShowMenu;
-        },
         addRole(){
             this.id = null;
             this.role.name = '';
@@ -219,12 +219,19 @@ let app = Vue.createApp({
           if(this.menuExpenses) data = this.expense;
           data.id = this.id;
 
+          this.alerts.danger.message = '';
+          this.alerts.primary.message = '';
+          this.alerts.success.message = '';
+          
+          this.showLoader = true;
+          this.showModal = false;
           axios
             .post('/api'+window.location.pathname, data)
             .then(response => {
               if('message' in response.data)
               {
                 this.alerts.danger.message = response.data.message;
+                this.showModal = true;
               }
               else
               {
@@ -241,23 +248,38 @@ let app = Vue.createApp({
                 this.expense.entryDate = '';
 
                 this.alerts.success.message = 'Record was successfully saved!';
-                this.showModal = false;
-
+                
                 if(this.menuUserRole) this.data.userRoles = response.data;
                 if(this.menuUsers) this.data.users = response.data;
                 if(this.menuExpenseCategory) this.data.expenseCategories = response.data;
                 if(this.menuExpenses) this.data.expenses = response.data;
+
+                this.showModal = false;
               }
+
+              this.showLoader = false;
             })
-            .catch(err => console.log(err.message));
+            .catch(err => {
+              console.log(err.message);
+              this.showLoader = false;
+              this.showModal = true;
+            });
         },
         deleteRecord(){
+          this.showLoader = true;
+          this.showModal = false;
+
+          this.alerts.danger.message = '';
+          this.alerts.primary.message = '';
+          this.alerts.success.message = '';
+
           axios
             .post('/api'+window.location.pathname+'/delete', { 'id': this.id })
             .then(response => {
               if('message' in response.data)
               {
                 this.alerts.danger.message = response.data.message;
+                this.showModal = true;
               }
               else
               {
@@ -274,21 +296,28 @@ let app = Vue.createApp({
                 this.expense.entryDate = '';
 
                 this.alerts.primary.message = 'Record was successfully deleted!';
-                this.showModal = false;
-
+                
                 if(this.menuUserRole) this.data.userRoles = response.data;
                 if(this.menuUsers) this.data.users = response.data;
                 if(this.menuExpenseCategory) this.data.expenseCategories = response.data;
                 if(this.menuExpenses) this.data.expenses = response.data;
+                this.showModal = false;
               }
+              this.showLoader = false;
             })
-            .catch(err => console.log(err.message));
+            .catch(err => {
+              console.log(err.message);
+              this.showModal = true;
+              this.showLoader = false;
+            });
         }
     },
     mounted(){
-      axios.get('/api/user/role')
+      axios.get('/api/user')
         .then(response => {
-          this.isAdmin = response.data.role == 1
+          this.isAdmin = response.data.role == 1;
+          this.profile.name = response.data.name;
+          this.profile.role = response.data.role_name;
         })
         .catch(err => console.log(err.message));
 

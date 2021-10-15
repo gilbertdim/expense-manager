@@ -8,14 +8,14 @@
 
     <table class="text-sm w-full mt-5 mb-4">
         <thead>
-            <tr class="font-semibold text-center text-gray-900 bg-gray-100 border-gray-600">
+            <tr class="font-semibold text-center text-gray-900 bg-gray-200 border-gray-600">
                 <th class="border-2 py-1">Display Name</th>
                 <th class="border-2 py-1">Description</th>
                 <th class="border-2 py-1">Created At</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="border-gray-600" v-on:click="updateExpenseCategory(category)" v-for="category in data.expenseCategories">
+            <tr class="border-gray-600 hover:bg-gray-100" v-on:click="updateExpenseCategory(category)" v-for="category in data.expenseCategories">
                 <td class="border-2 px-2 py-1">${ category.name }</td>
                 <td class="border-2 px-2 py-1">${ category.description }</td>
                 <td class="border-2 px-2 py-1">${ category.created_date }</td>

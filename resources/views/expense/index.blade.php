@@ -8,7 +8,7 @@
 
     <table class="text-sm w-full mt-5 mb-4">
         <thead>
-            <tr class="font-semibold text-center text-gray-900 bg-gray-100 border-gray-600">
+            <tr class="font-semibold text-center text-gray-900 bg-gray-200 border-gray-600">
                 <th class="border-2 py-1">Expense Category</th>
                 <th class="border-2 py-1">Amount</th>
                 <th class="border-2 py-1">Entry Date</th>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-on:click="updateExpense(expense)" v-for="expense in data.expenses" class="border-gray-600">
+            <tr v-on:click="updateExpense(expense)" v-for="expense in data.expenses" class="border-gray-600 hover:bg-gray-100">
                 <td class="border-2 px-2 py-1">${ expense.category_name }</td>
                 <td class="border-2 px-2 py-1">$ ${ expense.amount }</td>
                 <td class="border-2 px-2 py-1">${ expense.entry_date }</td>
