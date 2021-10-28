@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('user/roles', [ UserRoleController::class, 'save' ]);
     Route::post('user/roles/delete', [ UserRoleController::class, 'delete' ]);
 
-    Route::get('expense/categories', [ ExpenseCategoryController::class, 'list' ]);
+    Route::get('expenses/category', [ ExpenseCategoryController::class, 'list' ]);
     Route::post('expenses/category', [ ExpenseCategoryController::class, 'save' ]);
     Route::post('expenses/category/delete', [ ExpenseCategoryController::class, 'delete' ]);
 

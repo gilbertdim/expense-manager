@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-on:click="updateRole(role)" v-for="role in data.userRoles" class="border-gray-600 hover:bg-gray-100">
+            <tr v-on:click="updateRole(role)" v-for="role in data" class="border-gray-600 hover:bg-gray-100">
                 <td class="border-2 px-2 py-1">${ role.name }</td>
                 <td class="border-2 px-2 py-1">${ role.description }</td>
                 <td class="border-2 px-2 py-1">${ role.created_date }</td>
@@ -24,6 +24,7 @@
     </table>
 
     <div class="flex justify-end">
-        <button v-on:click="addRole" class="hover:text-white hover:border-black hover:bg-gray-900 border-2 border-gray-900 px-3 py-1 rounded-md shadow">Add Role</button>
+        <button v-on:click="dataForm.show = true" class="hover:text-white hover:border-black hover:bg-gray-900 border-2 border-gray-900 px-3 py-1 rounded-md shadow">Add Role</button>
     </div>
+
 </x-app-layout>
